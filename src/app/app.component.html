@@ -1,31 +1,27 @@
-<!-- <ng-select [multiple]="true" placeholder="Select items" [(ngModel)]="selectedItems">
-  <ng-option *ngFor="let item of poke_items" class="btn btn-primary" [ngStyle]="{'background-color': item.ColorCode}">{{
-    item.LocalizedName }}</ng-option>
-</ng-select> -->
-
-
 <mat-form-field>
   <mat-select multiple name="countryString" [(value)]="selectedItems" placeholder="Poké-Type">
     <mat-select-trigger style="background-color: purple;">
-      <div *ngIf="!selectedItems">
-        Nothing selected
-      </div>
-      <div *ngIf="selectedItems">
-        {{ selectedItems }}
+      <div *ngIf="selectedItems" style="display:flex; flex-direction: row;">
+        <div *ngFor="let poke_item of selectedItems" 
+          [style.background-color]="poke_item.ColorCode" 
+          style="border-radius: 25px;
+                margin: 5px;
+                display: flex;
+                flex-direction: row;
+                ">
+          <div>
+            {{ poke_item.LocalizedName }}
+          </div>
+          <button (click)="remove(poke_item)">&times;</button>
         </div>
+      </div>
     </mat-select-trigger>
-    <mat-option *ngFor="let poke_item of poke_items" [value]="poke_item.LocalizedName"
-      [ngStyle]="{'background-color': poke_item.ColorCode}">{{ poke_item.LocalizedName }}</mat-option>
-    <!-- <mat-option [value]="'GB'" style="
-      background-color: red;
-      border-radius: 25px;
-      margin: 5px;
-      ">Great Britain</mat-option>
-    <mat-option [value]="'US'">
-      <button mat-mini-fab color="accent" aria-label="Example icon button with a filter list icon">
-        <mat-icon>filter_list</mat-icon>
-      </button>
+    <!-- Ik heb i.p.v. poke_item.LocalizedName, het volledige object in value gestoken -->
+    <!-- Die disabled zorgt voor het maximum -->
+    <mat-option *ngFor="let poke_item of poke_items" [value]="poke_item"
+      [ngStyle]="{'background-color': poke_item.ColorCode}"
+      [disabled]="selectedItems.length >= 2 && !selectedItems.includes(poke_item)">
+      {{ poke_item.LocalizedName }}
     </mat-option>
-    <mat-option [value]="'CA'">Canada</mat-option> -->
   </mat-select>
 </mat-form-field>

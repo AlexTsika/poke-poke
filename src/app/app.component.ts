@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'poke-poke';
-  poke_items = [
+  poke_items : any[] = [
     {
         "LocalizedName": "Electro",
         "ColorCode": "#F7D02C",
@@ -83,6 +83,9 @@ export class AppComponent {
     { id: 4, name: 'Item 4', color: '#dddddd' },
     { id: 5, name: 'Item 5', color: '#eeeeee' }
   ];
-
-  selectedItems = [];
+  // Methode ook aangemaakt vr te verwijderen
+  remove(item: any){
+    this.selectedItems = this.selectedItems.filter(selectedItem => item.Name !== selectedItem.Name);
+  }
+  selectedItems : any[] = [];
 }
