@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { TypesInfoWithMetaDto } from 'src/xhr_client';
+import { PokeTypeSelectorComponent } from '../poke-type-selector/poke-type-selector.component';
 
 @Component({
   selector: 'app-search-header',
@@ -8,8 +9,13 @@ import { TypesInfoWithMetaDto } from 'src/xhr_client';
 })
 export class SearchHeaderComponent {
   @Input() poke_types: TypesInfoWithMetaDto[] | null = null;
-  remove(item: any){
-    this.selectedItems = this.selectedItems.filter(selectedItem => item.Name !== selectedItem.Name);
+  @ViewChild(PokeTypeSelectorComponent, { static: false }) pokeTypeSelector!: ElementRef<PokeTypeSelectorComponent>;
+  submit() {
+    if (this.pokeTypeSelector && this.pokeTypeSelector.nativeElement) {
+      console.log(this.pokeTypeSelector.nativeElement.getSelectedItems());
+    }
+    else {
+      console.log("nog altijd null, lull");
+    }
   }
-  selectedItems : any[] = [];
 }

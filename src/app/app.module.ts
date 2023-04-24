@@ -12,10 +12,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { DefaultService } from 'src/xhr_client';
 import { SearchHeaderComponent } from './search-header/search-header.component';
+import { PokeTypeSelectorComponent } from './poke-type-selector/poke-type-selector.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    SearchHeaderComponent,
+    PokeTypeSelectorComponent,
     SearchHeaderComponent
   ],
   imports: [
