@@ -19,6 +19,8 @@ export class AppComponent implements OnInit {
             })
             .catch((reason) => console.log(reason));
     }
-    
+    startPokeSearch(types: string[], nameQuery: string){
+      console.log(types);
+    }
   title = 'poke-poke';
 }

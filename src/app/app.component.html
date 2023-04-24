@@ -1,6 +1,7 @@
 <div *ngIf="poke_types">
   <app-search-header
-    [poke_types] = poke_types> </app-search-header>
+    [poke_types]      = "poke_types"
+    [startPokeSearch] ="startPokeSearch"> </app-search-header>
 </div>
 <div *ngIf="!poke_types">
   <div>Osama Bin-Aant-Laden</div>
