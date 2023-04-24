@@ -10,10 +10,16 @@ import { MatSelectModule } from '@angular/material/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
+import { DefaultService } from 'src/xhr_client';
+import { SearchHeaderComponent } from './search-header/search-header.component';
+import { PokeTypeSelectorComponent } from './poke-type-selector/poke-type-selector.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SearchHeaderComponent,
+    PokeTypeSelectorComponent,
+    SearchHeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +32,9 @@ import { AppComponent } from './app.component';
     MatIconModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [
+    DefaultService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

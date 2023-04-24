@@ -1,31 +1,8 @@
-<!-- <ng-select [multiple]="true" placeholder="Select items" [(ngModel)]="selectedItems">
-  <ng-option *ngFor="let item of poke_items" class="btn btn-primary" [ngStyle]="{'background-color': item.ColorCode}">{{
-    item.LocalizedName }}</ng-option>
-</ng-select> -->
-
-
-<mat-form-field>
-  <mat-select multiple name="countryString" [(value)]="selectedItems" placeholder="Poké-Type">
-    <mat-select-trigger style="background-color: purple;">
-      <div *ngIf="!selectedItems">
-        Nothing selected
-      </div>
-      <div *ngIf="selectedItems">
-        {{ selectedItems }}
-        </div>
-    </mat-select-trigger>
-    <mat-option *ngFor="let poke_item of poke_items" [value]="poke_item.LocalizedName"
-      [ngStyle]="{'background-color': poke_item.ColorCode}">{{ poke_item.LocalizedName }}</mat-option>
-    <!-- <mat-option [value]="'GB'" style="
-      background-color: red;
-      border-radius: 25px;
-      margin: 5px;
-      ">Great Britain</mat-option>
-    <mat-option [value]="'US'">
-      <button mat-mini-fab color="accent" aria-label="Example icon button with a filter list icon">
-        <mat-icon>filter_list</mat-icon>
-      </button>
-    </mat-option>
-    <mat-option [value]="'CA'">Canada</mat-option> -->
-  </mat-select>
-</mat-form-field>
+<div *ngIf="poke_types">
+  <app-search-header
+    [poke_types]      = "poke_types"
+    [startPokeSearch] ="startPokeSearch"> </app-search-header>
+</div>
+<div *ngIf="!poke_types">
+  <div>Osama Bin-Aant-Laden</div>
+</div>

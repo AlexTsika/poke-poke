@@ -1,88 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { DefaultService, TypesInfoWithMetaDto } from 'src/xhr_client';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  title = 'poke-poke';
-  poke_items = [
-    {
-        "LocalizedName": "Electro",
-        "ColorCode": "#F7D02C",
-        "Name": "Electric"
-        
-    },
-    {
-        "LocalizedName": "Fighting",
-        "ColorCode": "#C22E28",
-        "Name": "Fighting"
-        
-    },
-    {
-        "LocalizedName": "Rock",
-        "ColorCode": "#B6A136",
-        "Name": "Rock"
-    },
-    {
-        "LocalizedName": "Grass",
-        "ColorCode": "#7AC74C",
-        "Name": "Grass"
-    },
-    {
-        "LocalizedName": "Psychic",
-        "ColorCode": "#F95587",
-        "Name": "Psychic"
-    },
-    {
-        "LocalizedName": "Steel",
-        "ColorCode": "#B7B7CE",
-        "Name": "Steel"
-    },
-    {
-        "LocalizedName": "Dark",
-        "ColorCode": "#705746",
-        "Name": "Dark"
-    },
-    {
-        "LocalizedName": "Poison",
-        "ColorCode": "#A33EA1",
-        "Name": "Poison"
-    },
-    {
-        "LocalizedName": "Ghost",
-        "ColorCode": "#735797",
-        "Name": "Ghost"
-    },
-    {
-        "LocalizedName": "Ground",
-        "ColorCode": "#E2BF65",
-        "Name": "Ground"
-    },
-    {
-        "LocalizedName": "Flying",
-        "ColorCode": "#A98FF3",
-        "Name": "Flying"
-    },
-    {
-        "LocalizedName": "Bug",
-        "ColorCode": "#A6B91A",
-        "Name": "Bug"
-    },
-    {
-        "LocalizedName": "Dragon",
-        "ColorCode": "#6F35FC",
-        "Name": "Dragon"
-    }
-];
-  items = [
-    { id: 1, name: 'Item 1', color: '#aaaaaa' },
-    { id: 2, name: 'Item 2', color: '#bbbbbb' },
-    { id: 3, name: 'Item 3', color: '#cccccc' },
-    { id: 4, name: 'Item 4', color: '#dddddd' },
-    { id: 5, name: 'Item 5', color: '#eeeeee' }
-  ];
+export class AppComponent implements OnInit {
+    poke_types : TypesInfoWithMetaDto[] | null = null;
+    constructor(private service: DefaultService){
 
-  selectedItems = [];
+    }
+    ngOnInit(): void {
+        this.service.getTypes("de")
+            .then((value: TypesInfoWithMetaDto[]) => {
+                console.log(value);
+                this.poke_types = value;
+            })
+            .catch((reason) => console.log(reason));
+    }
+    startPokeSearch(types: string[], nameQuery: string){
+      console.log(types);
+    }
+  title = 'poke-poke';
 }
