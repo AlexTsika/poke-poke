@@ -1,0 +1,25 @@
+<mat-form-field>
+    <mat-select multiple name="countryString" [(value)]="selectedItems" placeholder="Poké-Type">
+      <mat-select-trigger style="background-color: purple;">
+        <div *ngIf="selectedItems" style="display:flex; flex-direction: row;">
+          <div *ngFor="let poke_item of selectedItems" [style.background-color]="poke_item.ColorCode" style="border-radius: 25px;
+                margin: 5px;
+                display: flex;
+                flex-direction: row;
+                ">
+            <div>
+              {{ poke_item.LocalizedName }}
+            </div>
+            <button (click)="remove(poke_item)">&times;</button>
+          </div>
+        </div>
+      </mat-select-trigger>
+      <!-- Ik heb i.p.v. poke_item.LocalizedName, het volledige object in value gestoken -->
+      <!-- Die disabled zorgt voor het maximum -->
+      <mat-option *ngFor="let poke_item of poke_types" [value]="poke_item"
+        [ngStyle]="{'background-color': poke_item.ColorCode}"
+        [disabled]="selectedItems.length >= 2 && !selectedItems.includes(poke_item)">
+        {{ poke_item.LocalizedName }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
