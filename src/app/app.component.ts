@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { DefaultService, TypesInfoWithMetaDto } from 'src/xhr_client';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import {DefaultService, PokemonDetailDto, TypesInfoWithMetaDto } from '../xhr_client';
+import { PokeListViewComponent } from './poke-list-view/poke-list-view.component';
 
 @Component({
   selector: 'app-root',
@@ -8,19 +9,27 @@ import { DefaultService, TypesInfoWithMetaDto } from 'src/xhr_client';
 })
 export class AppComponent implements OnInit {
     poke_types : TypesInfoWithMetaDto[] | null = null;
-    constructor(private service: DefaultService){
+    @ViewChild(PokeListViewComponent, { static: false }) pokelistSelector!: PokeListViewComponent;
+    pokemon : PokemonDetailDto[] | null = null;
+    constructor(){
 
     }
     ngOnInit(): void {
-        this.service.getTypes("de")
+        DefaultService.getTypes("de")
             .then((value: TypesInfoWithMetaDto[]) => {
-                console.log(value);
                 this.poke_types = value;
             })
             .catch((reason) => console.log(reason));
     }
-    startPokeSearch(types: string[], nameQuery: string){
-      console.log(types);
+    startPokeSearch(types: string[], nameQuery: string, startsWith: boolean){
+
+      DefaultService
+        .getPokemonBytypename("grass", "de")
+        .then((value : PokemonDetailDto[]) => {
+          if(this.pokelistSelector){
+            this.pokelistSelector.setPokemon(value);
+          }
+        })
     }
   title = 'poke-poke';
 }

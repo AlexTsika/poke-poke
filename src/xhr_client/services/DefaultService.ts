@@ -3,6 +3,7 @@
 /* eslint-disable */
 import type { BasicPokemonDto } from '../models/BasicPokemonDto';
 import type { PokemonDetailDto } from '../models/PokemonDetailDto';
+import type { PokemonQueryDto } from '../models/PokemonQueryDto';
 import type { TypesInfoWithMetaDto } from '../models/TypesInfoWithMetaDto';
 
 import type { CancelablePromise } from '../core/CancelablePromise';
@@ -12,18 +13,66 @@ import { request as __request } from '../core/request';
 export class DefaultService {
 
     /**
+     * Find pokemon by complex type
+     * Fancy word for querying
+     * @param requestBody Pokemon query object
+     * @param locale The locale to retrieve the pokemon in
+     * @returns BasicPokemonDto A JSON array of all the pokemon
+     * @throws ApiError
+     */
+    public static postPokemon(
+requestBody: PokemonQueryDto,
+locale?: string,
+): CancelablePromise<Array<BasicPokemonDto>> {
+        return __request(OpenAPI, {
+            method: 'POST',
+            url: '/pokemon',
+            query: {
+                'locale': locale,
+            },
+            body: requestBody,
+            mediaType: 'application/json',
+            errors: {
+                400: `Validation did not succeed`,
+            },
+        });
+    }
+
+    /**
      * Get all the pokemon
      * Retrieve all the pokemon
      * @param locale The locale to retrieve the pokemon in
      * @returns BasicPokemonDto A JSON array of all the pokemon
      * @throws ApiError
      */
-    public getPokemon(
-        locale?: string,
-    ): CancelablePromise<Array<BasicPokemonDto>> {
+    public static getPokemon(
+locale?: string,
+): CancelablePromise<Array<BasicPokemonDto>> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/pokemon',
+            query: {
+                'locale': locale,
+            },
+            errors: {
+                400: `Validation did not succeed`,
+            },
+        });
+    }
+
+    /**
+     * Get all the types with metadata
+     * Get all the types with metadata
+     * @param locale The locale to retrieve the pokemon in
+     * @returns TypesInfoWithMetaDto A JSON array of all the pokemon
+     * @throws ApiError
+     */
+    public static getTypes(
+locale?: string,
+): CancelablePromise<Array<TypesInfoWithMetaDto>> {
+        return __request(OpenAPI, {
+            method: 'GET',
+            url: '/types',
             query: {
                 'locale': locale,
             },
@@ -41,30 +90,16 @@ export class DefaultService {
      * @returns TypesInfoWithMetaDto A JSON array of all the pokemon
      * @throws ApiError
      */
-    public getTypesByName(
-        typeName: string,
-        locale?: string,
-    ): CancelablePromise<Array<TypesInfoWithMetaDto>> {
+    public static getTypes1(
+typeName: string,
+locale?: string,
+): CancelablePromise<Array<TypesInfoWithMetaDto>> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/types/{typeName}',
             path: {
                 'typeName': typeName,
             },
-            query: {
-                'locale': locale,
-            },
-            errors: {
-                400: `Validation did not succeed`,
-            },
-        });
-    }
-    public getTypes(
-        locale?: string,
-    ): CancelablePromise<Array<TypesInfoWithMetaDto>> {
-        return __request(OpenAPI, {
-            method: 'GET',
-            url: '/types/',
             query: {
                 'locale': locale,
             },
@@ -83,9 +118,9 @@ export class DefaultService {
      * @throws ApiError
      */
     public static getPokemonBytypename(
-        typeName: string,
-        locale?: string,
-    ): CancelablePromise<Array<PokemonDetailDto>> {
+typeName: string,
+locale?: string,
+): CancelablePromise<Array<PokemonDetailDto>> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/pokemon/bytypename/{typeName}',
@@ -110,9 +145,9 @@ export class DefaultService {
      * @throws ApiError
      */
     public static getPokemonBypokedex(
-        pokedex: number,
-        locale?: string,
-    ): CancelablePromise<PokemonDetailDto> {
+pokedex: number,
+locale?: string,
+): CancelablePromise<PokemonDetailDto> {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/pokemon/bypokedex/{pokedex}',

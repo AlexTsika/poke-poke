@@ -10,4 +10,3 @@ export type PokemonDetailDto = {
     LocalizedName?: string;
     Types?: Array<TypesInfoWithMetaDto>;
 };
-

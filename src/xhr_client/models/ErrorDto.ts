@@ -3,7 +3,6 @@
 /* eslint-disable */
 
 export type ErrorDto = {
-    ErrorCode?: string;
-    ErrorMessage?: string;
+    errorCode?: string;
+    errorMessage?: string;
 };
-

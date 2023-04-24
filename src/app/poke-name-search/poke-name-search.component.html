@@ -1,0 +1,17 @@
+<div>
+    <form [formGroup]="searchForm">
+        <div class="form-check">
+          <input class="form-check-input" type="radio" formControlName="searchType" value="startswith" id="flexRadioDefault1">
+          <label class="form-check-label" for="flexRadioDefault1">
+            Starts With
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" formControlName="searchType" value="contains" id="flexRadioDefault2">
+          <label class="form-check-label" for="flexRadioDefault2">
+            Contains
+          </label>
+        </div>
+      </form>      
+    <input type="text" name="" id="" class="form-control" #queryText>
+</div>

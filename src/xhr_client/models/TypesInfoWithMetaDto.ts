@@ -10,4 +10,3 @@ export type TypesInfoWithMetaDto = {
     ColorCode?: string;
     DamageModifiers?: Array<DamageModifiersDto>;
 };
-

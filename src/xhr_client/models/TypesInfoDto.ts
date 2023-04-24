@@ -7,4 +7,3 @@ export type TypesInfoDto = {
     LocalizedName?: string;
     ColorCode?: string;
 };
-

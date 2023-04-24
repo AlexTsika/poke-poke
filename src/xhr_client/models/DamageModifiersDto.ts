@@ -8,4 +8,3 @@ export type DamageModifiersDto = {
     Attack?: Array<MultiplierSetDto>;
     Defense?: Array<MultiplierSetDto>;
 };
-

@@ -3,8 +3,7 @@
 /* eslint-disable */
 
 export type BasicPokemonDto = {
-    Pokedex?: number;
-    Name?: string;
-    LocalizedName?: string;
+    pokedex?: number;
+    name?: string;
+    localizedName?: string;
 };
-

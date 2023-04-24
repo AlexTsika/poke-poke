@@ -13,13 +13,18 @@ import { AppComponent } from './app.component';
 import { DefaultService } from 'src/xhr_client';
 import { SearchHeaderComponent } from './search-header/search-header.component';
 import { PokeTypeSelectorComponent } from './poke-type-selector/poke-type-selector.component';
+import { PokeNameSearchComponent } from './poke-name-search/poke-name-search.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { PokeListViewComponent } from './poke-list-view/poke-list-view.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchHeaderComponent,
     PokeTypeSelectorComponent,
-    SearchHeaderComponent
+    SearchHeaderComponent,
+    PokeNameSearchComponent,
+    PokeListViewComponent
   ],
   imports: [
     BrowserModule,
@@ -30,11 +35,10 @@ import { PokeTypeSelectorComponent } from './poke-type-selector/poke-type-select
     MatSelectModule,
     MatButtonModule,
     MatIconModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ReactiveFormsModule
   ],
-  providers: [
-    DefaultService
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

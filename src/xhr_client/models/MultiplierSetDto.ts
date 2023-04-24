@@ -8,4 +8,3 @@ export type MultiplierSetDto = {
     DamageMultiplier?: number;
     Types?: Array<TypesInfoDto>;
 };
-
